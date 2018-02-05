@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars</title>
+  <link rel="stylesheet" type=text/css href='static/theme.css'>
+</head>
+
+<body onload="newHeader()">
+  <div class="container text-center">
+    <h1 class="jumbotron">Cool Mars Stuff to Know</h1>
+    <script>
+      var headers = ["Go to Mars to get more candy bars.", 
+      "Bring Mark Watney Home.", 
+      "Because you <3 red planets.", 
+      "Because you need some space."];
+      function newHeader () {
+      var id = Math.round(Math.random() * (headers.length - 1))
+      document.getElementById('marsHeader').innerText = headers[id];
+    }
+    </script>
+    <h3 id = "marsHeader"></h3>
+    <nav class="navbar navbar-inverse">
+      <ul class="nav navbar-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/references">Reference</a></li>
+      </ul>
+    </nav>
+    <div class="row">
+      {% for hemi_dict in mars_data["hemispheres"] %}
+      <div class="col-md-3">
+        <div class="thumbnail">
+         <a href="{{ hemi_dict['img_url'] }}" target="_blank">
+          <img src="{{ hemi_dict['img_url'] }}" style="width:100%">
+            <div class="caption">
+              <p>{{ hemi_dict['title'] }}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="row text-left">
+      <div class="col-md-4 col-md-offset-4">
+        {{ mars_data['facts']|safe }}
+      </div>
+    </div>
+  </div>
+</html>

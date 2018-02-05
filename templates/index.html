@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars</title>
+  <link rel="stylesheet" type=text/css href='static/theme.css'>
+</head>
+
+<body onload="newHeader()">
+  <div class="container text-center">
+    <h1 class="jumbotron">Mission to Mars</h1>
+    <script>
+    var headers = ["Go to Mars to get more candy bars.", 
+    "Bring Mark Watney Home.", 
+    "Because you <3 red planets.", 
+    "Because you need some space."];
+    function newHeader () {
+    var id = Math.round(Math.random() * (headers.length - 1))
+    document.getElementById('marsHeader').innerText = headers[id];
+  }
+    </script>
+      <h3 id = "marsHeader"></h3>
+      <nav class="navbar navbar-inverse">
+        <ul class="nav navbar-nav">
+          <li><a class="navbar-brand" href="/">Scrape for the latest stuff!</a></li>
+          <li><a href="/references">Reference</a></li>
+        </ul>
+      </nav>
+  <div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">Mars News</div>
+      <div class="panel-body"> 
+        <h4>{{ mars_data['news'][0] }}</h4> <br>
+          <p>{{ mars_data['news'][1] }}</p>
+        </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">Mars Photo</div>
+      <div class="panel-body">
+        <img class="img-responsive" src = "{{ mars_data['image'] }}"></img>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">Mars Weather</div>
+      <div class="panel-body">{{ mars_data['weather'] }}</div>
+    </div>
+  </div>
+</div>
+</html>
